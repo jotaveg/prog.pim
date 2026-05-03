@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Início | Sistema Colaborativo Acadêmico{% endblock %}
+
+{% block content %}
+<section class="hero-grid align-center">
+    <div class="layout-stack-lg">
+        <p class="section-eyebrow eyebrow">MVP acadêmico</p>
+        <h1 class="title-lg">Sistema colaborativo acadêmico - PIM</h1>
+        <p class="copy lead-text width-wide">Uma base plug-and-play para demonstrar Django, grupos de usuários e gestão de conteúdos em um ambiente escolar.</p>
+        <div class="align-center gap-12">
+            <a href="{% url 'login' %}" class="btn-primary">Entrar no sistema</a>
+            <a href="{% url 'project-list' %}" class="btn-secondary">Ver projetos</a>
+        </div>
+    </div>
+    <div class="app-surface p-6">
+        <div class="feature-grid">
+            <div class="card-soft card-pad-4">
+                <p class="muted copy-sm">Administrador</p>
+                <p class="accent title-md">Acesso total</p>
+            </div>
+            <div class="card-soft card-pad-4">
+                <p class="muted copy-sm">Professor</p>
+                <p class="accent title-md">Gerencia conteúdos</p>
+            </div>
+            <div class="card-soft card-pad-4">
+                <p class="muted copy-sm">Aluno</p>
+                <p class="accent title-md">Colabora e envia posts</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

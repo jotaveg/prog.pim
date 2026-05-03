@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil | Sistema Colaborativo Acadêmico{% endblock %}
+
+{% block content %}
+<div class="profile-grid">
+    <section class="panel">
+        <p class="section-eyebrow eyebrow">Perfil do usuário</p>
+        <h1 class="title-lg mt-sm">{{ user.get_full_name|default:user.username }}</h1>
+        <p class="copy mt-sm">Função: {{ role }}</p>
+        <div class="grid-2 mt-lg">
+            <div class="card-soft card-pad-4">
+                <p class="muted copy-sm">E-mail</p>
+                <p class="card-title mt-sm">{{ user.email|default:'Não informado' }}</p>
+            </div>
+            <div class="card-soft card-pad-4">
+                <p class="muted copy-sm">Usuário</p>
+                <p class="card-title mt-sm">{{ user.username }}</p>
+            </div>
+        </div>
+    </section>
+
+    <aside class="panel">
+        <h2 class="title-md">Resumo</h2>
+        <div class="summary-list mt-md">
+            <p><span class="summary-label">Projetos:</span> {{ project_count }}</p>
+            <p><span class="summary-label">Tarefas atribuídas:</span> {{ task_count }}</p>
+            <p><span class="summary-label">Status:</span> Ativo</p>
+        </div>
+    </aside>
+</div>
+{% endblock %}

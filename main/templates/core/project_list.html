@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Projetos | Sistema Colaborativo Acadêmico{% endblock %}
+
+{% block content %}
+<div class="align-end-between">
+    <div class="layout-stack">
+        <p class="section-eyebrow eyebrow">Lista colaborativa</p>
+        <h1 class="title-lg">Projetos e Turmas</h1>
+    </div>
+</div>
+
+<div class="space-top project-grid">
+    {% for project in projects %}
+        <a href="{% url 'project-detail' project.pk %}" class="card card-link card-pad-6">
+            <p class="section-eyebrow eyebrow">{{ project.lead_professor.get_full_name|default:project.lead_professor.username }}</p>
+            <h2 class="title-md mt-sm">{{ project.title }}</h2>
+            <p class="copy copy-sm mt-md">{{ project.description }}</p>
+            <div class="flex-between mt-lg muted copy-sm">
+                <span>{{ project.members.count }} membros</span>
+                <span>{{ project.tasks.count }} tarefas</span>
+            </div>
+        </a>
+    {% empty %}
+        <div class="card card-pad-6 muted">Nenhum projeto disponível.</div>
+    {% endfor %}
+</div>
+{% endblock %}

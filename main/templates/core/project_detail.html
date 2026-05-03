@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }} | Sistema Colaborativo Acadêmico{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <div class="detail-grid">
+        <div>
+            <p class="section-eyebrow eyebrow">Workspace do projeto</p>
+            <h1 class="title-lg mt-sm">{{ object.title }}</h1>
+            <p class="copy lead-text width-wide mt-md">{{ object.description }}</p>
+        </div>
+        <div class="card-soft card-pad-4 copy-sm">
+            <p><span class="summary-label">Professor:</span> {{ object.lead_professor.get_full_name|default:object.lead_professor.username }}</p>
+            <p><span class="summary-label">Membros:</span> {{ object.members.count }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="space-top detail-grid">
+    <div class="panel">
+        <h2 class="title-md">Tarefas</h2>
+        <div class="layout-stack mt-md">
+            {% for task in object.tasks.all %}
+                <article class="card card-pad-4">
+                    <div class="flex-between-top">
+                        <div>
+                            <p class="card-title">{{ task.title }}</p>
+                            <p class="copy copy-sm mt-sm">{{ task.description }}</p>
+                        </div>
+                        <span class="pill">{{ task.get_status_display }}</span>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="muted copy-sm">Sem tarefas cadastradas.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2 class="title-md">Posts recentes</h2>
+        <div class="layout-stack mt-md">
+            {% for post in object.posts.all %}
+                <article class="card card-pad-4">
+                    <p class="card-title copy-sm">{{ post.author.get_full_name|default:post.author.username }}</p>
+                    <p class="copy copy-sm mt-md">{{ post.body }}</p>
+                    <p class="muted copy-xs mt-md">{{ post.created_at }}</p>
+                </article>
+            {% empty %}
+                <p class="muted copy-sm">Ainda não há posts nesta turma.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

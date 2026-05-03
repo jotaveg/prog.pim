@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Sistema Colaborativo Acadêmico{% endblock %}
+
+{% block content %}
+<div class="align-end-between">
+    <div class="layout-stack">
+        <p class="muted copy-sm">Olá, {{ user.first_name|default:user.username }}</p>
+        <h1 class="title-lg">Dashboard {{ role }}</h1>
+    </div>
+    <a href="{% url 'project-list' %}" class="btn-secondary">Abrir projetos</a>
+</div>
+
+<section class="space-top stat-grid">
+    <div class="card card-pad-4">
+        <p class="muted copy-sm">Projetos</p>
+        <p class="accent title-lg">{{ project_count }}</p>
+    </div>
+    <div class="card card-pad-5">
+        <p class="muted copy-sm">Tarefas</p>
+        <p class="accent title-lg">{{ task_count }}</p>
+    </div>
+    <div class="card card-pad-5">
+        <p class="muted copy-sm">Posts</p>
+        <p class="accent title-lg">{{ post_count }}</p>
+    </div>
+</section>
+
+<section class="space-top panel">
+    <h2 class="title-md">Projetos recentes</h2>
+    <div class="layout-stack mt-md">
+        {% for project in projects %}
+            <a href="{% url 'project-detail' project.pk %}" class="card card-link card-pad-4">
+                <div class="flex-between">
+                    <div>
+                        <p class="accent title-md">{{ project.title }}</p>
+                        <p class="muted copy-sm">Prof. {{ project.lead_professor.get_full_name|default:project.lead_professor.username }}</p>
+                    </div>
+                    <span class="muted copy-sm">{{ project.members.count }} membros</span>
+                </div>
+            </a>
+        {% empty %}
+            <p class="muted copy-sm">Nenhum projeto disponível para este usuário.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
