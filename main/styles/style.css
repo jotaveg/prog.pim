@@ -36,12 +36,28 @@ input {
 }
 
 .page-header {
-	background: linear-gradient(180deg, rgba(236, 227, 247, 0.98), rgba(245, 241, 251, 0.94));
 	border-bottom: 1px solid var(--color-border);
 	box-shadow: var(--shadow-soft);
 	position: sticky;
 	top: 0;
 	z-index: 10;
+	background-image: url('../../static/main/styles/images/landing-hero.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	overflow: hidden;
+}
+
+.page-header::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(180deg, rgba(19, 11, 27, 0.89), rgba(75, 36, 133, 0.8));
+	z-index: 1;
+	pointer-events: none;
 }
 
 .page-header-inner,
@@ -54,21 +70,26 @@ input {
 	box-sizing: border-box;
 }
 
-.page-header-inner,
-.page-main {
-	max-width: 1120px;
-	margin: 0 auto;
-	padding-left: 24px;
-	padding-right: 24px;
-}
-
 .page-header-inner {
+	position: relative;
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
 	padding-top: 18px;
 	padding-bottom: 18px;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+.page-main {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding-left: 24px;
+	padding-right: 24px;
 }
 
 .page-main {
@@ -86,7 +107,7 @@ input {
 }
 
 .brand {
-	color: var(--color-primary);
+	color: white;
 	font-size: 1.1rem;
 	font-weight: 700;
 	letter-spacing: -0.02em;
@@ -108,14 +129,14 @@ input {
 }
 
 .nav-link {
-	color: var(--color-muted);
+	color: white;
 	font-size: 0.95rem;
 	font-weight: 600;
 	padding: 8px 0;
 }
 
 .nav-link:hover {
-	color: var(--color-primary);
+	color: rgb(222, 177, 248);
 }
 
 .btn-primary,
@@ -225,6 +246,7 @@ input {
 	font-size: 1.5rem;
 	font-weight: 800;
 	letter-spacing: -0.03em;
+	color: white;
 }
 
 .title-md {
